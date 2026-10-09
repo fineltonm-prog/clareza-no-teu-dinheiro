@@ -16,3 +16,4 @@
 - Keep diagnosis inputs in independent in-memory period buckets and normalize annual totals only for monthly planning modules, preventing period labels from fabricating transactions.
 - Generate personal diagnosis PDFs on demand in the browser with a dynamically imported PDF library; personal financial reports must not be uploaded to asset storage.
 - Implement the interface brand animation with CSS and inline vector paths, respecting reduced motion without a video asset.
+- Export configurable reminders as calendar events with alarms; session-only settings cannot send background notifications, and imported events are managed by the user's calendar.
