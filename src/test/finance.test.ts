@@ -1,6 +1,13 @@
 import {describe,it,expect} from 'vitest';
 import {diagnose,reserve,fictitiousIRS,fictitiousPPR} from '@/lib/finance';
+import {example} from '@/components/finance/state';
 describe('Educational financial calculations',()=>{
+ it('starts the interactive Marta example at the source deficit',()=>{
+  const essential=example.rent+example.bills+example.transport+example.groceries;
+  const choices=example.restaurants+example.subscriptions+example.shopping+example.leisure+example.other+example.irregular;
+  expect(essential).toBe(820);
+  expect(diagnose(example.income,essential,choices).balance).toBe(-65);
+ });
  it('calculates Marta actual deficit from the source',()=>expect(diagnose(1200,820,445).balance).toBe(-65));
  it('calculates the three source emergency targets',()=>expect([1,3,6].map(m=>reserve(820,m,450).target)).toEqual([820,2460,4920]));
  it('caps emergency progress at 100 percent',()=>expect(reserve(820,1,1000).percent).toBe(100));
