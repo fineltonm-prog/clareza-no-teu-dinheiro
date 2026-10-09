@@ -1,4 +1,5 @@
 # Ebook visual edition
+- [ ] Add configurable calendar reminders for Emergency Fund and Plan 365, with explicit delivery limits.
 - [ ] Add period-specific diagnosis, custom income/expenses, PDF download, alerts and savings action.
 - [ ] Add privacy/help pages and truthful session security information.
 - [ ] Animate the interface logo and verify interactions, downloads and reduced motion.
