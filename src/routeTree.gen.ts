@@ -10,33 +10,154 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DividasRouteImport } from './routes/dividas'
+import { Route as FundoRouteImport } from './routes/fundo'
+import { Route as InvestimentoRouteImport } from './routes/investimento'
+import { Route as IrsRouteImport } from './routes/irs'
+import { Route as LegalRouteImport } from './routes/legal'
+import { Route as OrcamentoRouteImport } from './routes/orcamento'
+import { Route as PlanoRouteImport } from './routes/plano'
+import { Route as PprRouteImport } from './routes/ppr'
+import { Route as RecursosRouteImport } from './routes/recursos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DividasRoute = DividasRouteImport.update({
+  id: '/dividas',
+  path: '/dividas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FundoRoute = FundoRouteImport.update({
+  id: '/fundo',
+  path: '/fundo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InvestimentoRoute = InvestimentoRouteImport.update({
+  id: '/investimento',
+  path: '/investimento',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IrsRoute = IrsRouteImport.update({
+  id: '/irs',
+  path: '/irs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalRoute = LegalRouteImport.update({
+  id: '/legal',
+  path: '/legal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrcamentoRoute = OrcamentoRouteImport.update({
+  id: '/orcamento',
+  path: '/orcamento',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanoRoute = PlanoRouteImport.update({
+  id: '/plano',
+  path: '/plano',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PprRoute = PprRouteImport.update({
+  id: '/ppr',
+  path: '/ppr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecursosRoute = RecursosRouteImport.update({
+  id: '/recursos',
+  path: '/recursos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dividas': typeof DividasRoute
+  '/fundo': typeof FundoRoute
+  '/investimento': typeof InvestimentoRoute
+  '/irs': typeof IrsRoute
+  '/legal': typeof LegalRoute
+  '/orcamento': typeof OrcamentoRoute
+  '/plano': typeof PlanoRoute
+  '/ppr': typeof PprRoute
+  '/recursos': typeof RecursosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dividas': typeof DividasRoute
+  '/fundo': typeof FundoRoute
+  '/investimento': typeof InvestimentoRoute
+  '/irs': typeof IrsRoute
+  '/legal': typeof LegalRoute
+  '/orcamento': typeof OrcamentoRoute
+  '/plano': typeof PlanoRoute
+  '/ppr': typeof PprRoute
+  '/recursos': typeof RecursosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dividas': typeof DividasRoute
+  '/fundo': typeof FundoRoute
+  '/investimento': typeof InvestimentoRoute
+  '/irs': typeof IrsRoute
+  '/legal': typeof LegalRoute
+  '/orcamento': typeof OrcamentoRoute
+  '/plano': typeof PlanoRoute
+  '/ppr': typeof PprRoute
+  '/recursos': typeof RecursosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/dividas'
+    | '/fundo'
+    | '/investimento'
+    | '/irs'
+    | '/legal'
+    | '/orcamento'
+    | '/plano'
+    | '/ppr'
+    | '/recursos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/dividas'
+    | '/fundo'
+    | '/investimento'
+    | '/irs'
+    | '/legal'
+    | '/orcamento'
+    | '/plano'
+    | '/ppr'
+    | '/recursos'
+  id:
+    | '__root__'
+    | '/'
+    | '/dividas'
+    | '/fundo'
+    | '/investimento'
+    | '/irs'
+    | '/legal'
+    | '/orcamento'
+    | '/plano'
+    | '/ppr'
+    | '/recursos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DividasRoute: typeof DividasRoute
+  FundoRoute: typeof FundoRoute
+  InvestimentoRoute: typeof InvestimentoRoute
+  IrsRoute: typeof IrsRoute
+  LegalRoute: typeof LegalRoute
+  OrcamentoRoute: typeof OrcamentoRoute
+  PlanoRoute: typeof PlanoRoute
+  PprRoute: typeof PprRoute
+  RecursosRoute: typeof RecursosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +169,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dividas': {
+      id: '/dividas'
+      path: '/dividas'
+      fullPath: '/dividas'
+      preLoaderRoute: typeof DividasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fundo': {
+      id: '/fundo'
+      path: '/fundo'
+      fullPath: '/fundo'
+      preLoaderRoute: typeof FundoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/investimento': {
+      id: '/investimento'
+      path: '/investimento'
+      fullPath: '/investimento'
+      preLoaderRoute: typeof InvestimentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/irs': {
+      id: '/irs'
+      path: '/irs'
+      fullPath: '/irs'
+      preLoaderRoute: typeof IrsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal': {
+      id: '/legal'
+      path: '/legal'
+      fullPath: '/legal'
+      preLoaderRoute: typeof LegalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orcamento': {
+      id: '/orcamento'
+      path: '/orcamento'
+      fullPath: '/orcamento'
+      preLoaderRoute: typeof OrcamentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plano': {
+      id: '/plano'
+      path: '/plano'
+      fullPath: '/plano'
+      preLoaderRoute: typeof PlanoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ppr': {
+      id: '/ppr'
+      path: '/ppr'
+      fullPath: '/ppr'
+      preLoaderRoute: typeof PprRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recursos': {
+      id: '/recursos'
+      path: '/recursos'
+      fullPath: '/recursos'
+      preLoaderRoute: typeof RecursosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DividasRoute: DividasRoute,
+  FundoRoute: FundoRoute,
+  InvestimentoRoute: InvestimentoRoute,
+  IrsRoute: IrsRoute,
+  LegalRoute: LegalRoute,
+  OrcamentoRoute: OrcamentoRoute,
+  PlanoRoute: PlanoRoute,
+  PprRoute: PprRoute,
+  RecursosRoute: RecursosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
