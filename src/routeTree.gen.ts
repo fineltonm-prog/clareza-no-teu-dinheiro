@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AjudaRouteImport } from './routes/ajuda'
 import { Route as DividasRouteImport } from './routes/dividas'
 import { Route as FundoRouteImport } from './routes/fundo'
 import { Route as InvestimentoRouteImport } from './routes/investimento'
@@ -18,11 +19,17 @@ import { Route as LegalRouteImport } from './routes/legal'
 import { Route as OrcamentoRouteImport } from './routes/orcamento'
 import { Route as PlanoRouteImport } from './routes/plano'
 import { Route as PprRouteImport } from './routes/ppr'
+import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as RecursosRouteImport } from './routes/recursos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AjudaRoute = AjudaRouteImport.update({
+  id: '/ajuda',
+  path: '/ajuda',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DividasRoute = DividasRouteImport.update({
@@ -65,6 +72,11 @@ const PprRoute = PprRouteImport.update({
   path: '/ppr',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacidadeRoute = PrivacidadeRouteImport.update({
+  id: '/privacidade',
+  path: '/privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RecursosRoute = RecursosRouteImport.update({
   id: '/recursos',
   path: '/recursos',
@@ -73,6 +85,7 @@ const RecursosRoute = RecursosRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ajuda': typeof AjudaRoute
   '/dividas': typeof DividasRoute
   '/fundo': typeof FundoRoute
   '/investimento': typeof InvestimentoRoute
@@ -81,10 +94,12 @@ export interface FileRoutesByFullPath {
   '/orcamento': typeof OrcamentoRoute
   '/plano': typeof PlanoRoute
   '/ppr': typeof PprRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/recursos': typeof RecursosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ajuda': typeof AjudaRoute
   '/dividas': typeof DividasRoute
   '/fundo': typeof FundoRoute
   '/investimento': typeof InvestimentoRoute
@@ -93,11 +108,13 @@ export interface FileRoutesByTo {
   '/orcamento': typeof OrcamentoRoute
   '/plano': typeof PlanoRoute
   '/ppr': typeof PprRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/recursos': typeof RecursosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ajuda': typeof AjudaRoute
   '/dividas': typeof DividasRoute
   '/fundo': typeof FundoRoute
   '/investimento': typeof InvestimentoRoute
@@ -106,12 +123,14 @@ export interface FileRoutesById {
   '/orcamento': typeof OrcamentoRoute
   '/plano': typeof PlanoRoute
   '/ppr': typeof PprRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/recursos': typeof RecursosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/ajuda'
     | '/dividas'
     | '/fundo'
     | '/investimento'
@@ -120,10 +139,12 @@ export interface FileRouteTypes {
     | '/orcamento'
     | '/plano'
     | '/ppr'
+    | '/privacidade'
     | '/recursos'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ajuda'
     | '/dividas'
     | '/fundo'
     | '/investimento'
@@ -132,10 +153,12 @@ export interface FileRouteTypes {
     | '/orcamento'
     | '/plano'
     | '/ppr'
+    | '/privacidade'
     | '/recursos'
   id:
     | '__root__'
     | '/'
+    | '/ajuda'
     | '/dividas'
     | '/fundo'
     | '/investimento'
@@ -144,11 +167,13 @@ export interface FileRouteTypes {
     | '/orcamento'
     | '/plano'
     | '/ppr'
+    | '/privacidade'
     | '/recursos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AjudaRoute: typeof AjudaRoute
   DividasRoute: typeof DividasRoute
   FundoRoute: typeof FundoRoute
   InvestimentoRoute: typeof InvestimentoRoute
@@ -157,6 +182,7 @@ export interface RootRouteChildren {
   OrcamentoRoute: typeof OrcamentoRoute
   PlanoRoute: typeof PlanoRoute
   PprRoute: typeof PprRoute
+  PrivacidadeRoute: typeof PrivacidadeRoute
   RecursosRoute: typeof RecursosRoute
 }
 
@@ -167,6 +193,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ajuda': {
+      id: '/ajuda'
+      path: '/ajuda'
+      fullPath: '/ajuda'
+      preLoaderRoute: typeof AjudaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dividas': {
@@ -225,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PprRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacidade': {
+      id: '/privacidade'
+      path: '/privacidade'
+      fullPath: '/privacidade'
+      preLoaderRoute: typeof PrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/recursos': {
       id: '/recursos'
       path: '/recursos'
@@ -237,6 +277,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AjudaRoute: AjudaRoute,
   DividasRoute: DividasRoute,
   FundoRoute: FundoRoute,
   InvestimentoRoute: InvestimentoRoute,
@@ -245,6 +286,7 @@ const rootRouteChildren: RootRouteChildren = {
   OrcamentoRoute: OrcamentoRoute,
   PlanoRoute: PlanoRoute,
   PprRoute: PprRoute,
+  PrivacidadeRoute: PrivacidadeRoute,
   RecursosRoute: RecursosRoute,
 }
 export const routeTree = rootRouteImport
