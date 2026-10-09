@@ -9,6 +9,7 @@ describe('Educational financial calculations',()=>{
   expect(diagnose(example.income,essential,choices).balance).toBe(-65);
  });
  it('calculates Marta actual deficit from the source',()=>expect(diagnose(1200,820,445).balance).toBe(-65));
+ it('expresses the source deficit as a negative savings rate',()=>expect(diagnose(1200,820,445).savingsRate).toBeCloseTo(-5.4167,4));
  it('calculates the three source emergency targets',()=>expect([1,3,6].map(m=>reserve(820,m,450).target)).toEqual([820,2460,4920]));
  it('caps emergency progress at 100 percent',()=>expect(reserve(820,1,1000).percent).toBe(100));
  it('uses clearly fictitious progressive brackets from the ebook',()=>expect(fictitiousIRS(25000,600,4500)).toEqual({gross:4500,tax:3900,settlement:600}));

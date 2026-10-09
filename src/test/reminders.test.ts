@@ -1,0 +1,10 @@
+import {it,expect} from 'vitest';
+import {calendarReminder,initialReminder} from '@/lib/reminders';
+const now=new Date('2026-10-09T12:00:00Z');
+const config={...initialReminder,enabled:true,date:'2026-11-10',time:'09:00'};
+it('includes monthly recurrence and 15 minute warning',()=>{const s=calendarReminder(config,'Rever reserva',now,'test');expect(s).toContain('RRULE:FREQ=MONTHLY;BYMONTHDAY=10\r\n');expect(s).toContain('TRIGGER:-PT15M\r\n');});
+it('supports weekly reminders',()=>expect(calendarReminder({...config,frequency:'weekly'},'Plano',now,'test')).toContain('RRULE:FREQ=WEEKLY'));
+it('does not repeat one-off reminders',()=>expect(calendarReminder({...config,frequency:'once'},'Plano',now,'test')).not.toContain('RRULE:'));
+it('rejects past dates',()=>expect(()=>calendarReminder({...config,date:'2020-01-01'},'Plano',now,'test')).toThrow());
+it('rejects disabled reminders',()=>expect(()=>calendarReminder({...config,enabled:false},'Plano',now,'test')).toThrow());
+it('escapes calendar content to prevent injected events',()=>expect(calendarReminder(config,'Plano\nBEGIN:VEVENT',now,'test')).toContain('SUMMARY:Plano\\nBEGIN:VEVENT\r\n'));

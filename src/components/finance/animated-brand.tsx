@@ -1,0 +1,1 @@
+export function AnimatedBrand(){return <span className="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="24" height="24" fill="none"><path className="logo-outline" d="M7 25V7h18M11 25h14" stroke="currentColor" strokeLinecap="round"/><path className="logo-line" d="M11 21l5-6 4 3 5-7" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/></svg></span>;}

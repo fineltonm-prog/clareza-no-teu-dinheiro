@@ -1,0 +1,12 @@
+import {createFileRoute,Link} from '@tanstack/react-router';
+import {moduleHead} from '@/lib/finance';
+import {Accordion,AccordionItem,AccordionTrigger,AccordionContent} from '@/components/ui/accordion';
+export const Route=createFileRoute('/ajuda')({head:()=>moduleHead('Ajuda','Respostas sobre períodos, relatórios e dados do teu diagnóstico financeiro.'),component:Help});
+function Help(){return <><div className="page-heading"><div><div className="eyebrow">Dinheiro com Plano</div><h1>Ajuda, sem complicações.</h1><p>Respostas às dúvidas mais frequentes.</p></div></div><Accordion type="single" collapsible>{[
+ ['Os meus valores ficam guardados?','Não. Permanecem nesta sessão enquanto navegas entre módulos. Recarregar a página repõe o exemplo fictício da Marta e elimina os valores introduzidos.'],
+ ['O que acontece ao mudar o período?','Cada mês, ano e janela de últimos 30 dias tem valores separados nesta sessão. Um período novo começa a zero. O anual recebe totais anuais: não multiplica automaticamente o mês por 12. No Orçamento e no Fundo de emergência, esses totais anuais são divididos por 12 para obter uma média mensal. Os últimos 30 dias são uma janela única, preenchida manualmente, sem histórico de movimentos.'],
+ ['Como obtenho um resumo?','No Diagnóstico, seleciona o período e descarrega o relatório PDF. Inclui o saldo e as categorias desse período. O ficheiro pode conter informação sensível; guarda-o com cuidado.'],
+ ['Como corrijo uma despesa?','Altera o valor no Diagnóstico. Os movimentos adicionados também permitem alterar o nome e eliminar a linha. As despesas essenciais contam para a reserva; as escolhas pessoais não.'],
+ ['Posso confiar na simulação de IRS ou PPR?','São exemplos educativos fictícios, não cálculos oficiais nem recomendações. Confirma sempre as regras e condições aplicáveis nas fontes oficiais.'],
+ ['Existe atendimento personalizado?','Ainda não existe um canal de suporte dedicado nesta aplicação. Para decisões financeiras ou fiscais pessoais, consulta um profissional habilitado.']
+ ].map(([q='',a=''])=><AccordionItem key={q} value={q}><AccordionTrigger>{q}</AccordionTrigger><AccordionContent className="reading-note">{a}</AccordionContent></AccordionItem>)}</Accordion><p className="reading-note mt-6">Consulta também a <Link to="/privacidade" className="text-primary">informação de privacidade</Link> e as <Link to="/recursos" className="text-primary">fontes oficiais</Link>.</p></>;}
