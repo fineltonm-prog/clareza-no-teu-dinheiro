@@ -1,4 +1,7 @@
 # Ebook visual edition
+- [ ] Add period-specific diagnosis, custom income/expenses, PDF download, alerts and savings action.
+- [ ] Add privacy/help pages and truthful session security information.
+- [ ] Animate the interface logo and verify interactions, downloads and reduced motion.
 - [x] Preserve original ebook content and integrate consistent cover, chapter imagery and infographics.
 - [x] Add requested debt/action chapters, conclusion, glossary, checklist and verification annex missing from original.
 - [x] Validate arithmetic, disclose unverified fiscal values and inspect every delivered PDF page.
