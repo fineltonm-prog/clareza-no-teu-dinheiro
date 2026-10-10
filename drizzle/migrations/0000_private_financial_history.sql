@@ -1,0 +1,16 @@
+CREATE TABLE public.financial_settings (user_id uuid PRIMARY KEY, recurring jsonb NOT NULL DEFAULT '[]'::jsonb, goals jsonb NOT NULL DEFAULT '[]'::jsonb, updated_at timestamptz NOT NULL DEFAULT now());
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.financial_settings TO authenticated;
+GRANT ALL ON public.financial_settings TO service_role;
+ALTER TABLE public.financial_settings ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Own financial settings" ON public.financial_settings FOR ALL TO authenticated USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
+CREATE TABLE public.monthly_diagnoses (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), user_id uuid NOT NULL, month text NOT NULL CHECK (month ~ '^[0-9]{4}-(0[1-9]|1[0-2])$'), accounts jsonb NOT NULL, entries jsonb NOT NULL DEFAULT '[]'::jsonb, income numeric NOT NULL CHECK (income >= 0), expenses numeric NOT NULL CHECK (expenses >= 0), balance numeric NOT NULL, updated_at timestamptz NOT NULL DEFAULT now(), UNIQUE(user_id, month));
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.monthly_diagnoses TO authenticated;
+GRANT ALL ON public.monthly_diagnoses TO service_role;
+ALTER TABLE public.monthly_diagnoses ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Own monthly diagnoses" ON public.monthly_diagnoses FOR ALL TO authenticated USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
+CREATE INDEX monthly_diagnoses_owner_month ON public.monthly_diagnoses(user_id, month);
+CREATE TABLE public.ai_access_blocks (user_id uuid PRIMARY KEY, reason text NOT NULL, status integer NOT NULL, updated_at timestamptz NOT NULL DEFAULT now());
+GRANT SELECT ON public.ai_access_blocks TO authenticated;
+GRANT ALL ON public.ai_access_blocks TO service_role;
+ALTER TABLE public.ai_access_blocks ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Read own AI access block" ON public.ai_access_blocks FOR SELECT TO authenticated USING (auth.uid() = user_id);

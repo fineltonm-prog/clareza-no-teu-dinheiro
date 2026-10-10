@@ -20,6 +20,7 @@ import { Route as OrcamentoRouteImport } from './routes/orcamento'
 import { Route as PlanoRouteImport } from './routes/plano'
 import { Route as PprRouteImport } from './routes/ppr'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
+import { Route as RecuperarRouteImport } from './routes/recuperar'
 import { Route as RecursosRouteImport } from './routes/recursos'
 
 const IndexRoute = IndexRouteImport.update({
@@ -77,6 +78,11 @@ const PrivacidadeRoute = PrivacidadeRouteImport.update({
   path: '/privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RecuperarRoute = RecuperarRouteImport.update({
+  id: '/recuperar',
+  path: '/recuperar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RecursosRoute = RecursosRouteImport.update({
   id: '/recursos',
   path: '/recursos',
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/plano': typeof PlanoRoute
   '/ppr': typeof PprRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/recuperar': typeof RecuperarRoute
   '/recursos': typeof RecursosRoute
 }
 export interface FileRoutesByTo {
@@ -109,6 +116,7 @@ export interface FileRoutesByTo {
   '/plano': typeof PlanoRoute
   '/ppr': typeof PprRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/recuperar': typeof RecuperarRoute
   '/recursos': typeof RecursosRoute
 }
 export interface FileRoutesById {
@@ -124,6 +132,7 @@ export interface FileRoutesById {
   '/plano': typeof PlanoRoute
   '/ppr': typeof PprRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/recuperar': typeof RecuperarRoute
   '/recursos': typeof RecursosRoute
 }
 export interface FileRouteTypes {
@@ -140,6 +149,7 @@ export interface FileRouteTypes {
     | '/plano'
     | '/ppr'
     | '/privacidade'
+    | '/recuperar'
     | '/recursos'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -154,6 +164,7 @@ export interface FileRouteTypes {
     | '/plano'
     | '/ppr'
     | '/privacidade'
+    | '/recuperar'
     | '/recursos'
   id:
     | '__root__'
@@ -168,6 +179,7 @@ export interface FileRouteTypes {
     | '/plano'
     | '/ppr'
     | '/privacidade'
+    | '/recuperar'
     | '/recursos'
   fileRoutesById: FileRoutesById
 }
@@ -183,6 +195,7 @@ export interface RootRouteChildren {
   PlanoRoute: typeof PlanoRoute
   PprRoute: typeof PprRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
+  RecuperarRoute: typeof RecuperarRoute
   RecursosRoute: typeof RecursosRoute
 }
 
@@ -265,6 +278,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/recuperar': {
+      id: '/recuperar'
+      path: '/recuperar'
+      fullPath: '/recuperar'
+      preLoaderRoute: typeof RecuperarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/recursos': {
       id: '/recursos'
       path: '/recursos'
@@ -287,6 +307,7 @@ const rootRouteChildren: RootRouteChildren = {
   PlanoRoute: PlanoRoute,
   PprRoute: PprRoute,
   PrivacidadeRoute: PrivacidadeRoute,
+  RecuperarRoute: RecuperarRoute,
   RecursosRoute: RecursosRoute,
 }
 export const routeTree = rootRouteImport
