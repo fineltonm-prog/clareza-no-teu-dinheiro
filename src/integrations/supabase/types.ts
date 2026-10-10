@@ -14,7 +14,84 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ai_access_blocks: {
+        Row: {
+          reason: string
+          status: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          reason: string
+          status: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          reason?: string
+          status?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      financial_settings: {
+        Row: {
+          goals: Json
+          recurring: Json
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          goals?: Json
+          recurring?: Json
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          goals?: Json
+          recurring?: Json
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      monthly_diagnoses: {
+        Row: {
+          accounts: Json
+          balance: number
+          entries: Json
+          expenses: number
+          id: string
+          income: number
+          month: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          accounts: Json
+          balance: number
+          entries?: Json
+          expenses: number
+          id?: string
+          income: number
+          month: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          accounts?: Json
+          balance?: number
+          entries?: Json
+          expenses?: number
+          id?: string
+          income?: number
+          month?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
