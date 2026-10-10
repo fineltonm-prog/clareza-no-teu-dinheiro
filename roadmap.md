@@ -1,8 +1,8 @@
 # Ebook visual edition
-- [ ] Add configurable calendar reminders for Emergency Fund and Plan 365, with explicit delivery limits.
-- [ ] Add period-specific diagnosis, custom income/expenses, PDF download, alerts and savings action.
-- [ ] Add privacy/help pages and truthful session security information.
-- [ ] Animate the interface logo and verify interactions, downloads and reduced motion.
+- [x] Add configurable calendar reminders for Emergency Fund and Plan 365, with explicit delivery limits.
+- [x] Add period-specific diagnosis, custom income/expenses, PDF download, alerts and savings action.
+- [x] Add privacy/help pages and truthful session security information.
+- [x] Animate the interface logo and verify interactions, downloads and reduced motion.
 - [x] Preserve original ebook content and integrate consistent cover, chapter imagery and infographics.
 - [x] Add requested debt/action chapters, conclusion, glossary, checklist and verification annex missing from original.
 - [x] Validate arithmetic, disclose unverified fiscal values and inspect every delivered PDF page.
