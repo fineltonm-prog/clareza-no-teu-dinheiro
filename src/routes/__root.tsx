@@ -130,3 +130,5 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
+import { AnimatedLogo } from "@/components/AnimatedLogo";
+<AnimatedLogo size={36} name="Clareza no teu dinheiro" />
