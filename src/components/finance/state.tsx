@@ -20,7 +20,7 @@ export function FinancialProvider({children}:{children:ReactNode}) {
  const [recurring,setRecurring]=useState<RecurringMovement[]>([]),[goals,setGoals]=useState<FinancialGoal[]>([]),[user,setUser]=useState<User|null>(null),[authReady,setAuthReady]=useState(false),[today,setToday]=useState('2026-10-10');
  const client=useQueryClient(),load=useServerFn(loadFinancial),identity=useRef<string|null>(null);
  useEffect(()=>{setToday(new Date().toLocaleDateString('en-CA'));let alive=true;const apply=(u:User|null)=>{if(!alive)return;const id=u?.id??null;if(identity.current!==id){identity.current=id;setPeriods({});setRecurring([]);setGoals([]);client.removeQueries({queryKey:['financial-private']});}setUser(u);setAuthReady(true);};void supabase.auth.getSession().then(({data})=>apply(data.session?.user??null));const {data}=supabase.auth.onAuthStateChange((event,session)=>{if(['SIGNED_IN','SIGNED_OUT','USER_UPDATED'].includes(event))apply(session?.user??null);});return()=>{alive=false;data.subscription.unsubscribe();};},[client]);
- const query=useQuery({queryKey:['financial-private',user?.id],queryFn:()=>load(),enabled:authReady&&Boolean(user),retry:false});
+ const query=useQuery({queryKey:['financial-private',user?.id],queryFn:()=>load(),enabled:authReady&&Boolean(user),retry:false,refetchOnWindowFocus:false});
  const loaded=useRef<unknown>(null);useEffect(()=>{if(query.data&&loaded.current!==query.data){loaded.current=query.data;setRecurring(query.data.settings.recurring);setGoals(query.data.settings.goals);}},[query.data]);
  const key=periodKey(mode,month),data=periods[key]??{accounts:emptyAccounts,entries:[],isExample:false};
  const setAccounts=(accounts:Accounts)=>setPeriods(p=>({...p,[key]:{...(p[key]??data),accounts,isExample:false}}));
@@ -28,6 +28,7 @@ export function FinancialProvider({children}:{children:ReactNode}) {
  const reset=()=>setPeriods(p=>({...p,[key]:{accounts:emptyAccounts,entries:[],isExample:false}}));
  const [saved,setSaved]=useState(450),[months,setMonths]=useState(3),[checked,setChecked]=useState<string[]>([]);
  const [reminders,setReminders]=useState<ReminderMap>({fund:{...initialReminder},plan:{...initialReminder}});
+ useEffect(()=>{setSaved(450);setMonths(3);setChecked([]);setReminders({fund:{...initialReminder},plan:{...initialReminder}});},[user?.id]);
  return <FinancialContext.Provider value={{user,cloudLoading:!authReady||(Boolean(user)&&query.isPending),cloudError:query.error?'Não foi possível carregar os dados da conta.':'',history:query.data?.history??[],refreshCloud:async()=>{await query.refetch();},recurring,setRecurring,goals,setGoals,today,reminders,setReminders,accounts:data.accounts,setAccounts,entries:[...data.entries,...recurringEntries(recurring,mode,month,today)],setEntries,mode,setMode,month,setMonth,isExample:data.isExample,reset,saved,setSaved,months,setMonths,checked,setChecked}}>{children}</FinancialContext.Provider>;
 }
 export function useFinancial(){const context=useContext(FinancialContext);if(!context)throw new Error('FinancialProvider is required');return context;}
