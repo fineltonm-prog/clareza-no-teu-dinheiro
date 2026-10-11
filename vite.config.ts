@@ -13,3 +13,22 @@ export default defineConfig({
     server: { entry: "server" },
   },
 });
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  // Mantenha os seus plugins atuais aqui se já existirem
+  build: {
+    sourcemap: false, // Desativa os sourcemaps em produção para reduzir o tamanho dos ficheiros e corrigir o aviso do PageSpeed
+    minify: 'esbuild', // Otimiza e comprime o código JavaScript de forma ultra-rápida
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          // Separa as dependências pesadas para melhorar o carregamento inicial (First Contentful Paint)
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        }
+      }
+    }
+  }
+})
