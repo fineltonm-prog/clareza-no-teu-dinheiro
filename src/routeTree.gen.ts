@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AjudaRouteImport } from './routes/ajuda'
 import { Route as DividasRouteImport } from './routes/dividas'
 import { Route as FundoRouteImport } from './routes/fundo'
+import { Route as HistoricoRouteImport } from './routes/historico'
 import { Route as InvestimentoRouteImport } from './routes/investimento'
 import { Route as IrsRouteImport } from './routes/irs'
 import { Route as LegalRouteImport } from './routes/legal'
@@ -41,6 +42,11 @@ const DividasRoute = DividasRouteImport.update({
 const FundoRoute = FundoRouteImport.update({
   id: '/fundo',
   path: '/fundo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoricoRoute = HistoricoRouteImport.update({
+  id: '/historico',
+  path: '/historico',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InvestimentoRoute = InvestimentoRouteImport.update({
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/ajuda': typeof AjudaRoute
   '/dividas': typeof DividasRoute
   '/fundo': typeof FundoRoute
+  '/historico': typeof HistoricoRoute
   '/investimento': typeof InvestimentoRoute
   '/irs': typeof IrsRoute
   '/legal': typeof LegalRoute
@@ -109,6 +116,7 @@ export interface FileRoutesByTo {
   '/ajuda': typeof AjudaRoute
   '/dividas': typeof DividasRoute
   '/fundo': typeof FundoRoute
+  '/historico': typeof HistoricoRoute
   '/investimento': typeof InvestimentoRoute
   '/irs': typeof IrsRoute
   '/legal': typeof LegalRoute
@@ -125,6 +133,7 @@ export interface FileRoutesById {
   '/ajuda': typeof AjudaRoute
   '/dividas': typeof DividasRoute
   '/fundo': typeof FundoRoute
+  '/historico': typeof HistoricoRoute
   '/investimento': typeof InvestimentoRoute
   '/irs': typeof IrsRoute
   '/legal': typeof LegalRoute
@@ -142,6 +151,7 @@ export interface FileRouteTypes {
     | '/ajuda'
     | '/dividas'
     | '/fundo'
+    | '/historico'
     | '/investimento'
     | '/irs'
     | '/legal'
@@ -157,6 +167,7 @@ export interface FileRouteTypes {
     | '/ajuda'
     | '/dividas'
     | '/fundo'
+    | '/historico'
     | '/investimento'
     | '/irs'
     | '/legal'
@@ -172,6 +183,7 @@ export interface FileRouteTypes {
     | '/ajuda'
     | '/dividas'
     | '/fundo'
+    | '/historico'
     | '/investimento'
     | '/irs'
     | '/legal'
@@ -188,6 +200,7 @@ export interface RootRouteChildren {
   AjudaRoute: typeof AjudaRoute
   DividasRoute: typeof DividasRoute
   FundoRoute: typeof FundoRoute
+  HistoricoRoute: typeof HistoricoRoute
   InvestimentoRoute: typeof InvestimentoRoute
   IrsRoute: typeof IrsRoute
   LegalRoute: typeof LegalRoute
@@ -227,6 +240,13 @@ declare module '@tanstack/react-router' {
       path: '/fundo'
       fullPath: '/fundo'
       preLoaderRoute: typeof FundoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/historico': {
+      id: '/historico'
+      path: '/historico'
+      fullPath: '/historico'
+      preLoaderRoute: typeof HistoricoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/investimento': {
@@ -300,6 +320,7 @@ const rootRouteChildren: RootRouteChildren = {
   AjudaRoute: AjudaRoute,
   DividasRoute: DividasRoute,
   FundoRoute: FundoRoute,
+  HistoricoRoute: HistoricoRoute,
   InvestimentoRoute: InvestimentoRoute,
   IrsRoute: IrsRoute,
   LegalRoute: LegalRoute,
