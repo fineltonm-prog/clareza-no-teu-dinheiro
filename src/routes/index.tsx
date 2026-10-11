@@ -5,3 +5,10 @@ export const Route = createFileRoute('/')({
  head: () => moduleHead('Diagnóstico', 'Organiza rendimentos e despesas e calcula o teu saldo mensal.'),
  component: Diagnosis,
 });
+<img 
+  src="..." 
+  alt="..." 
+  loading="lazy" 
+  decoding="async"
+  width="100%" 
+/>
