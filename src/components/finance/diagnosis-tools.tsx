@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 import {useServerFn} from '@tanstack/react-start';
 import {Link} from '@tanstack/react-router';
 import {Repeat2,Plus,Trash2,Save,Target,Sparkles,History} from 'lucide-react';
@@ -17,6 +17,8 @@ export function DiagnosisTools(){
  const [name,setName]=useState(''),[amount,setAmount]=useState(''),[kind,setKind]=useState<ExtraEntry['kind']>('essential'),[frequency,setFrequency]=useState<RecurringMovement['frequency']>('monthly'),[start,setStart]=useState(`${month}-01`),[end,setEnd]=useState('');
  const [goalName,setGoalName]=useState(''),[target,setTarget]=useState(''),[saved,setSaved]=useState('0'),[deadline,setDeadline]=useState('');
  const [busy,setBusy]=useState(''),[message,setMessage]=useState(''),[suggestions,setSuggestions]=useState(''),[consent,setConsent]=useState(false);
+ useEffect(()=>{setSuggestions('');setMessage('');setConsent(false);setName('');setAmount('');setGoalName('');setTarget('');setSaved('0');setDeadline('');},[user?.id]);
+ useEffect(()=>{setSuggestions('');setStart(`${month}-01`);},[mode,month]);
  const run=async(action:string,fn:()=>Promise<void>)=>{setBusy(action);setMessage('');try{await fn();}catch(e){setMessage(e instanceof Error?e.message:'Não foi possível concluir.');}finally{setBusy('');}};
  const validAmount=(v:string)=>Boolean(v)&&Number.isFinite(Number(v))&&Number(v)>0&&Number(v)<=1e9;
  return <div className="space-y-8 mt-8">
