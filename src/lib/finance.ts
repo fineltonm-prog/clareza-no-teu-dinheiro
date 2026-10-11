@@ -7,7 +7,7 @@ export const fictitiousIRS = (taxable: number, deductions: number, withheld: num
 };
 export const fictitiousPPR = (contribution: number, cost: number, years: number) => ({ illustrativeBenefit:contribution*.15, remaining:contribution*(1-cost/100)**years, fees:contribution*(1-(1-cost/100)**years) });
 export const navItems = [
- {path:'/',title:'Diagnóstico',icon:'diagnosis'}, {path:'/orcamento',title:'Orçamento mensal',icon:'budget'}, {path:'/fundo',title:'Fundo de emergência',icon:'shield'}, {path:'/irs',title:'Simulação IRS',icon:'tax'}, {path:'/ppr',title:'Comparador PPR',icon:'ppr'}, {path:'/investimento',title:'Investimento',icon:'invest'}, {path:'/dividas',title:'Dívidas e crédito',icon:'debt'}, {path:'/plano',title:'Plano 365',icon:'plan'}
+ {path:'/',title:'Diagnóstico',icon:'diagnosis'}, {path:'/historico',title:'Histórico mensal',icon:'history'}, {path:'/orcamento',title:'Orçamento mensal',icon:'budget'}, {path:'/fundo',title:'Fundo de emergência',icon:'shield'}, {path:'/irs',title:'Simulação IRS',icon:'tax'}, {path:'/ppr',title:'Comparador PPR',icon:'ppr'}, {path:'/investimento',title:'Investimento',icon:'invest'}, {path:'/dividas',title:'Dívidas e crédito',icon:'debt'}, {path:'/plano',title:'Plano 365',icon:'plan'}
 ] as const;
 export type ModulePath = typeof navItems[number]['path'] | '/recursos' | '/legal';
 export function moduleHead(title: string, description: string) { return {meta:[{title:`${title} — Dinheiro com Plano`},{name:'description',content:description},{property:'og:title',content:`${title} — Dinheiro com Plano`},{property:'og:description',content:description},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}; }
