@@ -1,5 +1,6 @@
 # Ebook visual edition
 - [ ] Add owner-private recurring movements, saved monthly comparisons and AI Gateway savings suggestions with goals.
+- [ ] Add euro coin AnimatedLogo to Diagnosis header and accessible initial fade-out loader.
 - [x] Add configurable calendar reminders for Emergency Fund and Plan 365, with explicit delivery limits.
 - [x] Add period-specific diagnosis, custom income/expenses, PDF download, alerts and savings action.
 - [x] Add privacy/help pages and truthful session security information.
