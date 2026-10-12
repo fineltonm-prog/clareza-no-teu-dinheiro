@@ -29,6 +29,12 @@
  --logo-coin-shadow: inset 0 0 0 3px color-mix(in srgb, var(--primary) 12%, transparent), 0 2px 8px color-mix(in srgb, var(--primary) 14%, transparent);
  --status-background: oklch(.97 .025 25);
 }
+.dark {
+ --background: oklch(.18 .012 260); --foreground: oklch(.94 .007 260);
+ --card: oklch(.22 .012 260); --primary: oklch(.75 .14 158); --primary-foreground: oklch(.18 .012 260);
+ --secondary: oklch(.27 .018 160); --muted: oklch(.26 .012 260); --muted-foreground: oklch(.72 .014 260);
+ --accent: oklch(.28 .035 158); --border: oklch(.35 .012 260);
+}
 @layer base {
  * { border-color:var(--border); letter-spacing:0; }
  body { margin:0; background:var(--background); color:var(--foreground); font-family:var(--font-sans); font-size:14px; }
