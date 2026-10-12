@@ -25,7 +25,15 @@
  --chart-2: oklch(.72 .063 156); --chart-3: oklch(.79 .061 78); --radius: 8px;
  --shadow-natural: 0 2px 5px oklch(.279 .037 260 / .025);
  --report-primary: #0F5132; --report-ink: #1E293B; --report-border: #DDE2E7;
+ --logo-coin-background: color-mix(in srgb, var(--primary) 10%, transparent);
+ --logo-coin-shadow: inset 0 0 0 3px color-mix(in srgb, var(--primary) 12%, transparent), 0 2px 8px color-mix(in srgb, var(--primary) 14%, transparent);
  --status-background: oklch(.97 .025 25);
+}
+.dark {
+ --background: oklch(.18 .012 260); --foreground: oklch(.94 .007 260);
+ --card: oklch(.22 .012 260); --primary: oklch(.75 .14 158); --primary-foreground: oklch(.18 .012 260);
+ --secondary: oklch(.27 .018 160); --muted: oklch(.26 .012 260); --muted-foreground: oklch(.72 .014 260);
+ --accent: oklch(.28 .035 158); --border: oklch(.35 .012 260);
 }
 @layer base {
  * { border-color:var(--border); letter-spacing:0; }
@@ -118,9 +126,3 @@
 @media(max-width:900px){.dashboard-grid{grid-template-columns:1fr}.page-heading{align-items:start}.heading-actions{flex-wrap:wrap}.metric-value{font-size:25px}}
 @media(max-width:700px){.app-shell,.app-shell.collapsed{display:block}.sidebar{position:fixed;left:-270px;width:248px;transition:left .2s;height:100dvh}.sidebar.mobile-open{left:0}.mobile-backdrop.open{display:block;position:fixed;inset:0;background:oklch(.2 .01 160 / .25);z-index:20}.mobile-menu{display:inline-flex}.topbar{height:65px;padding:0 18px}.topbar-trail .trail-parent{display:none}.workspace{padding:28px 18px 20px}.page-heading{grid-template-columns:1fr;gap:15px}.page-heading h1{font-size:34px}.heading-actions{justify-content:flex-start}.stats-grid{gap:10px;grid-template-columns:1fr 1fr}.metric:last-child{grid-column:1/-1}.metric{padding:16px}.metric-value{font-size:25px}.metric-note{font-size:9px}.panel-heading{padding:22px 20px 17px}.panel-body{padding:0 20px 22px}.edition-badge{display:none}.institutional-footer{flex-direction:column}.nav-link{font-size:12px}.form-row{grid-template-columns:minmax(0,1fr) 112px}.page-heading p{font-size:11px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-/* Ocultar marca d'água do Lovable */
-[class*="lovable"], 
-#lovable-badge,
-a[href*="lovable.dev"] {
-  display: none !important;
-}
