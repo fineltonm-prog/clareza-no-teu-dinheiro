@@ -8,9 +8,9 @@ export function InitialLoader({ children }: { children: ReactNode }) {
   const [visible, setVisible] = useState(true), [mounted, setMounted] = useState(true);
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const show = window.setTimeout(() => setVisible(false), reduced ? 1000 : 1500);
-    const remove = window.setTimeout(() => setMounted(false), reduced ? 1000 : 1850);
+    const show = window.setTimeout(() => setVisible(false), reduced ? 0 : 450);
+    const remove = window.setTimeout(() => setMounted(false), reduced ? 0 : 800);
     return () => { window.clearTimeout(show); window.clearTimeout(remove); };
   }, []);
-  return <><div className={`app-content ${visible ? 'app-content--loading' : ''}`} aria-hidden={mounted ? true : undefined} inert={mounted}>{children}</div>{mounted && <div className={`initial-loader ${visible ? '' : 'initial-loader--hidden'}`} role="status" aria-label="A preparar Finanças pessoais"><AnimatedLogo size={64}/></div>}</>;
+  return <><div className="app-content">{children}</div>{mounted && <div className={`initial-loader ${visible ? '' : 'initial-loader--hidden'}`} role="status" aria-hidden="true" aria-label="A preparar Finanças pessoais"><AnimatedLogo size={64}/></div>}</>;
 }
