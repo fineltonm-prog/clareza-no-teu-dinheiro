@@ -25,6 +25,8 @@
  --chart-2: oklch(.72 .063 156); --chart-3: oklch(.79 .061 78); --radius: 8px;
  --shadow-natural: 0 2px 5px oklch(.279 .037 260 / .025);
  --report-primary: #0F5132; --report-ink: #1E293B; --report-border: #DDE2E7;
+ --logo-coin-background: color-mix(in srgb, var(--primary) 10%, transparent);
+ --logo-coin-shadow: inset 0 0 0 3px color-mix(in srgb, var(--primary) 12%, transparent), 0 2px 8px color-mix(in srgb, var(--primary) 14%, transparent);
  --status-background: oklch(.97 .025 25);
 }
 @layer base {

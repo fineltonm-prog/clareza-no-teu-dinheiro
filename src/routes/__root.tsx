@@ -10,6 +10,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import { InitialLoader } from "@/components/AnimatedLogo";
 import { FinanceShell } from "@/components/finance/shell";
 import { FinancialProvider } from "@/components/finance/state";
 import { Button } from "@/components/ui/button";
@@ -126,7 +127,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <FinancialProvider><FinanceShell><Outlet /></FinanceShell></FinancialProvider> breaks all child routes. */}
-      <FinancialProvider><FinanceShell><Outlet /></FinanceShell></FinancialProvider>
+      <InitialLoader><FinancialProvider><FinanceShell><Outlet /></FinanceShell></FinancialProvider></InitialLoader>
     </QueryClientProvider>
   );
 }

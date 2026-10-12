@@ -18,3 +18,5 @@
 - Implement the interface brand animation with CSS and inline vector paths, respecting reduced motion without a video asset.
 - Export configurable reminders as calendar events with alarms; session-only settings cannot send background notifications, and imported events are managed by the user's calendar.
 - Keep savings advice behind authenticated server functions using the AI Gateway Responses SDK with explicit user consent and durable terminal access blocks; this protects sensitive inputs and prevents automated paid replays.
+
+- Mount the initial loader once in the root shell, never within a module, and implement the euro logo with CSS transforms using semantic theme tokens; this prevents loading again during navigation.
