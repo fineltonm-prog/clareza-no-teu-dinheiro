@@ -7,12 +7,15 @@ import {emptyAccounts,periodKey,type ExtraEntry,type PeriodMode} from '@/lib/dia
 import {recurringEntries,type RecurringMovement,type FinancialGoal} from '@/lib/recurring';
 import {loadFinancial} from '@/lib/financial.functions';
 import {initialReminder,type ReminderSettings} from '@/lib/reminders';
+import type {IndependenceInputs} from '@/lib/finance';
 export const example = {income:1200,rent:450,bills:110,transport:40,groceries:220,restaurants:100,subscriptions:20,shopping:80,leisure:50,other:50,irregular:145};
 export type Accounts = typeof example;
 type PeriodData={accounts:Accounts;entries:ExtraEntry[];isExample:boolean};
 type ReminderMap=Record<'fund'|'plan',ReminderSettings>;
 type History=Awaited<ReturnType<typeof loadFinancial>>['history'];
-type FinancialContextValue={user:User|null;cloudLoading:boolean;cloudError:string;history:History;refreshCloud:()=>Promise<void>;recurring:RecurringMovement[];setRecurring:(v:RecurringMovement[])=>void;goals:FinancialGoal[];setGoals:(v:FinancialGoal[])=>void;today:string;reminders:ReminderMap;setReminders:(r:ReminderMap)=>void;accounts:Accounts;setAccounts:(a:Accounts)=>void;entries:ExtraEntry[];setEntries:(e:ExtraEntry[])=>void;mode:PeriodMode;setMode:(m:PeriodMode)=>void;month:string;setMonth:(m:string)=>void;isExample:boolean;reset:()=>void;saved:number;setSaved:(v:number)=>void;months:number;setMonths:(v:number)=>void;checked:string[];setChecked:(v:string[])=>void};
+type FinancialContextValue={user:User|null;cloudLoading:boolean;cloudError:string;history:History;refreshCloud:()=>Promise<void>;recurring:RecurringMovement[];setRecurring:(v:RecurringMovement[])=>void;goals:FinancialGoal[];setGoals:(v:FinancialGoal[])=>void;today:string;reminders:ReminderMap;setReminders:(r:ReminderMap)=>void;accounts:Accounts;setAccounts:(a:Accounts)=>void;entries:ExtraEntry[];setEntries:(e:ExtraEntry[])=>void;mode:PeriodMode;setMode:(m:PeriodMode)=>void;month:string;setMonth:(m:string)=>void;isExample:boolean;reset:()=>void;saved:number;setSaved:(v:number)=>void;months:number;setMonths:(v:number)=>void;checked:string[];setChecked:(v:string[])=>void;netSalary:number|null;setNetSalary:(v:number|null)=>void;independence:IndependenceDraft;setIndependence:(v:IndependenceDraft)=>void};
+export type IndependenceDraft=Omit<IndependenceInputs,'monthlyExpenses'>&{monthlyExpenses:number|null};
+const initialIndependence:IndependenceDraft={currentSavings:5000,monthlySavings:300,monthlyExpenses:null,annualReturn:4,withdrawalRate:4};
 const FinancialContext=createContext<FinancialContextValue|null>(null);
 export function FinancialProvider({children}:{children:ReactNode}) {
  const [mode,setMode]=useState<PeriodMode>('month'),[month,setMonth]=useState('2026-10');
@@ -28,7 +31,8 @@ export function FinancialProvider({children}:{children:ReactNode}) {
  const reset=()=>setPeriods(p=>({...p,[key]:{accounts:emptyAccounts,entries:[],isExample:false}}));
  const [saved,setSaved]=useState(450),[months,setMonths]=useState(3),[checked,setChecked]=useState<string[]>([]);
  const [reminders,setReminders]=useState<ReminderMap>({fund:{...initialReminder},plan:{...initialReminder}});
- useEffect(()=>{setSaved(450);setMonths(3);setChecked([]);setReminders({fund:{...initialReminder},plan:{...initialReminder}});},[user?.id]);
- return <FinancialContext.Provider value={{user,cloudLoading:!authReady||(Boolean(user)&&query.isPending),cloudError:query.error?'Não foi possível carregar os dados da conta.':'',history:query.data?.history??[],refreshCloud:async()=>{await query.refetch();},recurring,setRecurring,goals,setGoals,today,reminders,setReminders,accounts:data.accounts,setAccounts,entries:[...data.entries,...recurringEntries(recurring,mode,month,today)],setEntries,mode,setMode,month,setMonth,isExample:data.isExample,reset,saved,setSaved,months,setMonths,checked,setChecked}}>{children}</FinancialContext.Provider>;
+ const [netSalary,setNetSalary]=useState<number|null>(null),[independence,setIndependence]=useState<IndependenceDraft>(initialIndependence);
+ useEffect(()=>{setSaved(450);setMonths(3);setChecked([]);setNetSalary(null);setIndependence(initialIndependence);setReminders({fund:{...initialReminder},plan:{...initialReminder}});},[user?.id]);
+ return <FinancialContext.Provider value={{user,cloudLoading:!authReady||(Boolean(user)&&query.isPending),cloudError:query.error?'Não foi possível carregar os dados da conta.':'',history:query.data?.history??[],refreshCloud:async()=>{await query.refetch();},recurring,setRecurring,goals,setGoals,today,reminders,setReminders,accounts:data.accounts,setAccounts,entries:[...data.entries,...recurringEntries(recurring,mode,month,today)],setEntries,mode,setMode,month,setMonth,isExample:data.isExample,reset,saved,setSaved,months,setMonths,checked,setChecked,netSalary,setNetSalary,independence,setIndependence}}>{children}</FinancialContext.Provider>;
 }
 export function useFinancial(){const context=useContext(FinancialContext);if(!context)throw new Error('FinancialProvider is required');return context;}
