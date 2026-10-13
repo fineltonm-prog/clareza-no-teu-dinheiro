@@ -23,7 +23,7 @@ export function EditorialImage({ src, alt, width, height, className = '' }: Edit
           ref={image => {
             if (image?.complete) setStatus(image.naturalWidth > 0 ? 'loaded' : 'error');
           }}
-          className={`relative h-full w-full object-contain ${status === 'loaded' ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 h-full w-full object-contain ${status === 'loaded' ? 'opacity-100' : 'opacity-0'}`}
           onLoad={() => setStatus('loaded')} onError={() => setStatus('error')} />
       )}
     </div>
