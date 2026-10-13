@@ -1,12 +1,12 @@
 import {useState,type ReactNode} from 'react';
 import {Link,useRouterState} from '@tanstack/react-router';
-import {ArrowUpRight,BookOpen,ChevronRight,Download,PanelLeftClose,PanelLeftOpen,Menu,LayoutDashboard,Wallet,ShieldCheck,FileText,Landmark,ChartNoAxesCombined,CreditCard,CalendarDays,History} from 'lucide-react';
+import {ArrowUpRight,BookOpen,ChevronRight,Download,PanelLeftClose,PanelLeftOpen,Menu,LayoutDashboard,Wallet,ShieldCheck,FileText,Landmark,ChartNoAxesCombined,CreditCard,CalendarDays,History,Sunrise} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import {navItems} from '@/lib/finance';
 import {AnimatedLogo} from '@/components/AnimatedLogo';
 import {AnimatedBrand} from './animated-brand';
 import ebook from '@/assets/ebook.asset.json';
-const icons={diagnosis:LayoutDashboard,history:History,budget:Wallet,shield:ShieldCheck,tax:FileText,ppr:Landmark,invest:ChartNoAxesCombined,debt:CreditCard,plan:CalendarDays};
+const icons={diagnosis:LayoutDashboard,history:History,budget:Wallet,shield:ShieldCheck,tax:FileText,ppr:Landmark,invest:ChartNoAxesCombined,freedom:Sunrise,debt:CreditCard,plan:CalendarDays};
 export function FinanceShell({children}:{children:ReactNode}) {
  const [collapsed,setCollapsed]=useState(false),[mobile,setMobile]=useState(false);
  const pathname=useRouterState({select:s=>s.location.pathname});const title=navItems.find(i=>i.path===pathname)?.title ?? (pathname==='/recursos'?'Biblioteca':pathname==='/ajuda'?'Ajuda':pathname==='/privacidade'?'Privacidade':'Aviso legal');
