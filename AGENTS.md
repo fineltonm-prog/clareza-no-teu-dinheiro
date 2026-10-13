@@ -13,6 +13,7 @@
 - Keep educational calculation functions pure and covered by concrete source-based tests; unverified tax examples must be explicitly labelled fictitious.
 - Keep unsaved financial inputs in the root session provider; persist explicit monthly snapshots, recurring settings and goals only in owner-scoped Cloud tables, never financial browser storage.
 - Serve downloadable editorial documents and illustrations through asset pointers rather than checking binary deliverables into source.
+- Render editorial illustrations through a shared image wrapper with fixed dimensions and a theme-aware fallback so loading failures never expose broken-image icons.
 - Keep manual diagnosis inputs in independent session period buckets; derive dated recurring occurrences separately without mutating buckets, and normalize annual totals only for monthly planning modules to avoid double counting.
 - Generate personal diagnosis PDFs on demand in the browser with a dynamically imported PDF library; personal financial reports must not be uploaded to asset storage.
 - Implement the interface brand animation with CSS and inline vector paths, respecting reduced motion without a video asset.

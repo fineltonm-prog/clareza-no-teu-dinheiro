@@ -8,7 +8,8 @@ import {Select,SelectTrigger,SelectValue,SelectContent,SelectItem} from '@/compo
 import {useFinancial} from './state';
 import {money,diagnose} from '@/lib/finance';
 import {accountTotals,essentialFields,choiceFields,periodLabel,type ExtraEntry,type PeriodMode,type FinancialAccounts} from '@/lib/diagnosis';
-import illustration from '@/assets/identidade.asset.json';
+import illustration from '@/assets/identidade-financeira.webp.asset.json';
+import {EditorialImage} from './editorial-image';
 import {FinancialAccount} from './account';
 import {DiagnosisTools} from './diagnosis-tools';
 export function Diagnosis(){

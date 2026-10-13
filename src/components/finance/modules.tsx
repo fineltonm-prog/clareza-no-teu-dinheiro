@@ -4,7 +4,8 @@ import {ArrowDownLeft,ArrowUpRight,ArrowRight,Wallet,TrendingUp,Info,Plus,Rotate
 import {PieChart,Pie,Cell,ResponsiveContainer,Tooltip,AreaChart,Area,XAxis,YAxis,CartesianGrid,BarChart,Bar} from 'recharts';
 import {Button} from '@/components/ui/button';import {Input} from '@/components/ui/input';import {Slider} from '@/components/ui/slider';import {Progress} from '@/components/ui/progress';import {Checkbox} from '@/components/ui/checkbox';import {Accordion,AccordionItem,AccordionTrigger,AccordionContent} from '@/components/ui/accordion';
 import {useFinancial,example,type Accounts} from './state';import {money,diagnose,reserve,fictitiousIRS,fictitiousPPR} from '@/lib/finance';
-import illustration from '@/assets/identidade.asset.json';import ebook from '@/assets/ebook.asset.json';
+import cover from '@/assets/capa-ebook-dinheiro.webp.asset.json';import ebook from '@/assets/ebook.asset.json';
+import {EditorialImage} from './editorial-image';
 import {Reminders} from './reminders';
 import {monthlyTotals} from '@/lib/diagnosis';
 const colors=['var(--primary)','var(--chart-2)','var(--chart-3)'];
