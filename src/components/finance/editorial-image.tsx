@@ -20,6 +20,9 @@ export function EditorialImage({ src, alt, width, height, className = '' }: Edit
       )}
       {status !== 'error' && (
         <img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async"
+          ref={image => {
+            if (image?.complete) setStatus(image.naturalWidth > 0 ? 'loaded' : 'error');
+          }}
           className={`relative h-full w-full object-contain ${status === 'loaded' ? 'opacity-100' : 'opacity-0'}`}
           onLoad={() => setStatus('loaded')} onError={() => setStatus('error')} />
       )}
